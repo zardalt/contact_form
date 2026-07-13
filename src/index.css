@@ -1,0 +1,26 @@
+@font-face {
+  font-family: Karla;
+  src: url('/fonts/Karla-Regular.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: Karla;
+  src: url('/fonts/Karla-Bold.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 700;
+}
+
+:root {
+  --g-200: hsl(148, 38%, 91%);
+  --g-600: hsl(169, 82%, 27%);
+  --r: hsl(0, 66%, 54%);
+  --w: hsl(0, 0%, 100%);
+  --g-500: hsl(186, 15%, 59%);
+  --g-900: hsl(187, 24%, 22%);
+}
+
+html {
+  font-size: clamp(16px, 16 / 375 * 100vw, 20px);
+}
