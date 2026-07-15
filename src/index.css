@@ -13,14 +13,25 @@
 }
 
 :root {
-  --g-200: hsl(148, 38%, 91%);
-  --g-600: hsl(169, 82%, 27%);
+  --gn-200: hsl(148, 38%, 91%);
+  --gn-600: hsl(169, 82%, 27%);
   --r: hsl(0, 66%, 54%);
   --w: hsl(0, 0%, 100%);
-  --g-500: hsl(186, 15%, 59%);
-  --g-900: hsl(187, 24%, 22%);
+  --gy-500: hsl(186, 15%, 59%);
+  --gy-900: hsl(187, 24%, 22%);
+
+  --unchecked: hsl(from var(--gy-500) h calc(s - 10) calc(l + 25));
 }
 
 html {
   font-size: clamp(16px, 16 / 375 * 100vw, 20px);
+}
+
+*,
+*::before,
+*::after {
+  font-family: Karla;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
