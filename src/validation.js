@@ -19,15 +19,16 @@ export function initThrowErr(setErrMsg, setErrIndex) {
     errIdx = idx;
   }
 
-  return [
-    throwErr,
-    () => errIdx,
-    (msg, idx) => {
-      if (msg && idx) throwErr(msg, idx);
-      setErrMsg(errMsg);
-      setErrIndex(errIdx);
-    },
-  ];
+  function getErrIdx() {
+    return errIdx;
+  }
+
+  function setErr() {
+    setErrMsg(errMsg);
+    setErrIndex(errIdx);
+  }
+
+  return [ throwErr, getErrIdx, setErr ];
 }
 
 export const validationFunctions = {

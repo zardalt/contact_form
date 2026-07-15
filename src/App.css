@@ -21,6 +21,8 @@ main {
   width: 90%;
   border-radius: .8em;
   margin: 0 auto;
+
+  max-width: 40em;
 }
 
 h1 {
@@ -36,6 +38,18 @@ h1 {
 form {
   padding-block-end: var(--container-padding);
   padding-inline: var(--container-padding);
+}
+
+@media (min-width: 600px) {
+  .name-container {
+    display: flex;
+    gap: .8em;
+    justify-content: stretch;
+
+    & > div {
+      width: 100%;
+    }
+  }
 }
 
 label,
@@ -85,13 +99,18 @@ fieldset {
     display: flex;
     flex-direction: column;
     gap: .4em;
+
+    @media (min-width: 640px) {
+      gap: .8em;
+      flex-direction: row;
+    }
   }
 
   & label {
     width: 100%;
     border: 1px solid var(--gy-500);
     padding: .8em 1.5em;
-    font-size: 1.1rem;
+    font-size: 1rem;
     display: flex;
     gap: .7em;
     align-items: center;
@@ -160,8 +179,12 @@ fieldset {
 
 textarea {
   resize: none;
-  height: 15em;
+  height: 10em;
   margin-block-end: 2em;
+
+  @media (min-width: 600px) {
+    height: 6em;
+  }
 }
 
 .checkbox {
@@ -170,9 +193,15 @@ textarea {
   align-items: center;
   margin-block-end: 2.5em;
 
+  &:has(input[aria-invalid=true]) {
+    outline-color: var(--r);
+    margin-block-end: 2.7em;
+  }
+
   & label {
     margin: 0;
     line-height: 1.4em;
+    font-size: .9rem;
   }
 
   & input {
@@ -210,11 +239,6 @@ textarea {
       outline: none;
     }
 
-    &[aria-invalid=true] {
-      outline-color: var(--r);
-      margin-block-end: .2em;
-    }
-
     &:checked {
       background-color: var(--gn-600);
 
@@ -250,4 +274,8 @@ p {
   color: var(--r);
   font-size: .9rem;
   translate: 0 -1.4em;
+
+  &#consentErr {
+    translate: 0 -2em;
+  }
 }

@@ -47,14 +47,7 @@ export default function App() {
     ].forEach(([name, func, idx]) => {
       if (errIndex() !== -1) return;
 
-      const validation =
-        func in validationFunctions
-          ? validationFunctions[func](name)
-          : (() => {
-              throw TypeError(
-                `${func} is not a property in validationFunctions`,
-              );
-            })();
+      const validation = validationFunctions[func](name);
 
       if (validation) throwErr(validation, idx);
     });
@@ -63,6 +56,8 @@ export default function App() {
   }
 
   function handleFormBlur() {
+    if (errIndex === -1) return;
+
     const noErr = initThrowErr(setErrMsg, setErrIndex)[2];
 
     switch (errIndex) {
@@ -91,9 +86,14 @@ export default function App() {
     <main>
       <h1>Contact Us</h1>
 
+      <div popover>
+        <p>Message Sent!</p>
+        <p>Thanks for completing the form. We'll be in touch soon!</p>
+      </div>
+
       <form onSubmit={handleFormSubmit} noValidate={true} onBlur={handleFormBlur}>
         <div className="name-container">
-          <div className="names">
+          <div>
             <label htmlFor="fName">First Name</label>
             <input
               type="text"
