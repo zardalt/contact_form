@@ -1,27 +1,20 @@
 body {
-  height: 100vh;
+  /* height: 100vh; */
   background-color: var(--gn-200);
-  display: flex;
-  align-items: center;
+  /* display: flex;
+  align-items: center; */
   /* overflow-y: scroll; */
-}
-
-#root {
-  margin: 0 auto;
-  width: 100vh;
-  display: flex;
-  justify-content: center;
-  max-height: 80%;
 }
 
 main {
   --container-padding: 1.4em;
 
   background-color: var(--w);
-  overflow-y: auto;
+  scrollbar-width: none;
   width: 90%;
   border-radius: .8em;
   margin: 0 auto;
+  margin-block: 5.3em;
 
   max-width: 40em;
 }
@@ -29,11 +22,7 @@ main {
 h1 {
   color: var(--gy-900);
   margin-block-end: .4em;
-  position: sticky;
-  top: 0;
-  background-color: var(--w);
   padding: calc(var(--container-padding) / 2);
-  z-index: 1000;
 }
 
 .success-popover {
