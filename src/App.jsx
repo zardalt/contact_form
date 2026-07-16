@@ -1,5 +1,6 @@
 import { INPUT_INDEXES, BASIC_EMAIL_REGEX, validationFunctions, initThrowErr } from './validation';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import SuccessCheck from './assets/icon-success-check.svg';
 import './App.css';
 
 export default function App() {
@@ -14,6 +15,11 @@ export default function App() {
 
   const [errIndex, setErrIndex] = useState(-1);
   const [errMsg, setErrMsg] = useState('');
+
+  const successPopover = useRef(null);
+  
+  let successPopoverTimeout;
+  let successPopoverTimeout2;
 
   function handleRadioChange(e) {
     setQType(e.target.value);
@@ -52,6 +58,18 @@ export default function App() {
       if (validation) throwErr(validation, idx);
     });
 
+    if (errIndex() === -1) {
+      clearTimeout(successPopoverTimeout);
+      clearTimeout(successPopoverTimeout2);
+      successPopover.current.showPopover();
+      successPopover.current.classList.remove('close');
+
+      successPopoverTimeout = setTimeout(() => successPopover.current.classList.add('close'), 5000);
+      successPopoverTimeout2 = setTimeout(
+        () => successPopover.current.hidePopover(),
+        5500,
+      );
+    }
     setError();
   }
 
@@ -86,8 +104,11 @@ export default function App() {
     <main>
       <h1>Contact Us</h1>
 
-      <div popover>
-        <p>Message Sent!</p>
+      <div className="success-popover" popover="manual" ref={successPopover} aria-live="true" role="status">
+        <p>
+          <img src={SuccessCheck} alt="" />
+          Message Sent!
+        </p>
         <p>Thanks for completing the form. We'll be in touch soon!</p>
       </div>
 
@@ -144,7 +165,7 @@ export default function App() {
           {errIndex === INPUT_INDEXES.email ? errMsg : ""}
         </p>
 
-        <fieldset aria-required="true">
+        <fieldset>
           <legend>Query Type</legend>
           <div>
             <label htmlFor="genEnq">

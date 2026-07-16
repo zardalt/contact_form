@@ -3,6 +3,7 @@ body {
   background-color: var(--gn-200);
   display: flex;
   align-items: center;
+  /* overflow-y: scroll; */
 }
 
 #root {
@@ -10,7 +11,7 @@ body {
   width: 100vh;
   display: flex;
   justify-content: center;
-  max-height: 90%;
+  max-height: 80%;
 }
 
 main {
@@ -33,6 +34,53 @@ h1 {
   background-color: var(--w);
   padding: calc(var(--container-padding) / 2);
   z-index: 1000;
+}
+
+.success-popover {
+  background-color: var(--gy-900);
+  border: none;
+  inset: unset;
+  padding: 1.3em;
+  border-radius: .5em;
+  top: 0;
+  left: 50%;
+  right: 50%;
+  translate: -50% 1.5em;
+  width: max-content;
+  scale: 1;
+  transition: 
+    scale 200ms ease-in,
+    translate 200ms ease-in;
+
+  & img {
+    width: 1.1em;
+  }
+  
+  & > p {
+    color: white;
+    translate: 0;
+    font-size: .8rem;
+
+    &:first-child {
+      font-weight: bold;
+      margin-block-end: .6em;
+      display: flex;
+      align-items: center;
+      gap: .6em;
+    }
+  }
+
+  &.close {
+    translate: -50% calc(-1 * (100% + 1.5em));
+    scale: .8;
+  }
+}
+
+@starting-style {
+  .success-popover {
+    translate: -50% calc(-1 * (100% + 1.5em));
+    scale: .8;
+  }
 }
 
 form {
@@ -262,7 +310,7 @@ button[type=submit] {
   transition: background-color 100ms ease-in;
 
   &:focus {
-    outline: 1px solid var(--gy-900);
+    outline: 2px solid var(--gy-900);
   }
 
   &:hover {
